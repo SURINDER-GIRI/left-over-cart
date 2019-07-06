@@ -57,7 +57,6 @@ router.post('/login',(req,res,next)=>{
 
 		else{
 
-
 			if(user == ""){
 				res.status(200).json({
 					Username: "false",
@@ -69,7 +68,7 @@ router.post('/login',(req,res,next)=>{
 
 					res.status(200).json({
 					Username: "true",
-					password:"false"
+						password:"false"
 				});
 
 			}
@@ -85,7 +84,7 @@ router.post('/login',(req,res,next)=>{
 
 			else{
 				res.status(400).json({
-					"message": "unknown Request"
+					message: "unknown Request"
 				});
 			}
 		}
@@ -100,7 +99,7 @@ router.post('/home',(req,res,next)=>{
 
 		if(err){
 			res.status(404).json({
-				"error" : err
+				error : err
 			});
 		}
 
