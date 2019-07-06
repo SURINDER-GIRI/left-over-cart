@@ -57,21 +57,37 @@ router.post('/login',(req,res,next)=>{
 
 		else{
 
-				if(user[0].Password == req.body.Password){
+				
+			if(user == ""){
+				res.status(200).json({
+					"Username": "false",
+					"password":"false"
+				});
+			}
+
+			else if(user[0].Username == req.body.Username && user[0].Password != req.body.Password){
 
 					res.status(200).json({
-						credentials:user[0],
-						username:true,
-						password : true
-					})
+					"Username": "true",
+					"password":"false"
+				});
 
-				}
-				else{
-					res.status(201).json({
-						username : true,
-						passwrod:false
-					})
-				}
+			}
+
+			else if (user[0].Username == req.body.Username && user[0].Password == req.body.Password){
+
+				res.status(200).json({
+					"Username": "true",
+					"password":"true"
+				});
+
+			}
+
+			else{
+				res.status(400).json({
+					"message": "unknown Request"
+				});
+			}
 		}
 })
 

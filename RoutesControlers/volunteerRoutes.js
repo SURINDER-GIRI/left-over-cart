@@ -62,35 +62,51 @@ router.post('/signUp',(req,res,next)=>{
 
 
 router.post('/login',(req,res,next)=>{
-
+	console.log(req.body.Username);
+	console.log(req.body.Password);
 	Volunteer.find({Username: req.body.Username}, function(err, user){
 
 		if(err){
-
-			res.status(404).json({
-
-				error:err
-
-			});
-
+			json.status(404).status({
+				"error":err
+			})
 		}
 
 		else{
-				if(user.Password == req.body.Password){
+
+
+
+			if(user == ""){
+				res.status(200).json({
+					"Username": "false",
+					"password":"false"
+				});
+			}
+
+			else if(user[0].Username == req.body.Username && user[0].Password != req.body.Password){
 
 					res.status(200).json({
-						location_id:user.Location,
-						username:true,
-						password : true
-					})
+					"Username": "true",
+					"password":"false"
+				});
 
-				}
-				else{
-					res.status(201).json({
-						username : true,
-						passwrod:false
-					})
-				}
+			}
+
+			else if (user[0].Username == req.body.Username && user[0].Password == req.body.Password){
+
+				res.status(200).json({
+					"Username": "true",
+					"password":"true"
+				});
+
+			}
+
+			else{
+				res.status(400).json({
+					"message": "unknown Request"
+				});
+			}
+		
 		}
 })
 
