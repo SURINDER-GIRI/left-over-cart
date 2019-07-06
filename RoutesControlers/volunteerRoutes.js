@@ -82,9 +82,10 @@ router.post('/login',(req,res,next)=>{
 				});
 			}
 
-			else if(user[0].Username == req.body.Username && user[0].Password != req.body.Password){
+			else if(user[0].Username == req.body.Username && user[0].Password != req.body.Password)
+			{
 
-					res.status(304).json({
+					res.status(200).json({
 					Username: "true",
 					password:"false"
 
@@ -111,7 +112,7 @@ router.post('/login',(req,res,next)=>{
 		
 		}
 })
-	
+
 });
 
 router.get('/:Id',function(req,res,next){
