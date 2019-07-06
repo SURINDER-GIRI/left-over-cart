@@ -62,8 +62,7 @@ router.post('/signUp',(req,res,next)=>{
 
 
 router.post('/login',(req,res,next)=>{
-	console.log(req.body.Username);
-	console.log(req.body.Password);
+		
 	Volunteer.find({Username: req.body.Username}, function(err, user){
 
 		if(err){
