@@ -63,19 +63,9 @@ router.post('/signUp',(req,res,next)=>{
 
 router.post('/login',(req,res,next)=>{
 		
-	Volunteer.find({Username: req.body.Username}, function(err, user){
-
-		if(err){
-			json.status(404).status({
-				"error":err
-			})
-		}
-
-		else{
-
-
-
-			if(user == ""){
+	Volunteer.find({Username: req.body.Username})
+	.then(function(user){
+		if(user == ""){
 				res.status(500).json({
 					Username: "false",
 					password:"false"
@@ -109,9 +99,16 @@ router.post('/login',(req,res,next)=>{
 					message: "unknown Request"
 				});
 			}
-		
-		}
-})
+	})
+	.catch(function(err){
+
+			res.status(404).json({
+				"error" : err
+			});
+	})
+
+
+
 
 });
 
