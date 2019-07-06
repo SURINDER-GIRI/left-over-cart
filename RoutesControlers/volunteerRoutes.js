@@ -131,6 +131,8 @@ router.get('/:Id',function(req,res,next){
 				else{
 			
 					await eventss.forEach((event)=>{
+
+						console.log("event is " + event)
 					events.push(event)
 				});
 
