@@ -78,16 +78,16 @@ router.post('/login',(req,res,next)=>{
 
 			if(user == ""){
 				res.status(200).json({
-					"Username": "false",
-					"password":"false"
+					Username: "false",
+					password:"false"
 				});
 			}
 
 			else if(user[0].Username == req.body.Username && user[0].Password != req.body.Password){
 
 					res.status(200).json({
-					"Username": "true",
-					"password":"false"
+					Username: "true",
+					password:"false"
 				});
 
 			}
@@ -95,15 +95,15 @@ router.post('/login',(req,res,next)=>{
 			else if (user[0].Username == req.body.Username && user[0].Password == req.body.Password){
 
 				res.status(200).json({
-					"Username": "true",
-					"password":"true"
+					Username: "true",
+					password:"true"
 				});
 
 			}
 
 			else{
 				res.status(400).json({
-					"message": "unknown Request"
+					message: "unknown Request"
 				});
 			}
 		
