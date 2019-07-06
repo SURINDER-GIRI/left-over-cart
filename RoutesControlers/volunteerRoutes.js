@@ -114,6 +114,8 @@ router.post('/login',(req,res,next)=>{
 
 router.get('/:Id',function(req,res,next){
 	const locationId = req.params.Id;
+
+	console.log("location Id" + locationId);
 	var events = []
 	Location.find({_id:locationId}, function(err, user){
 	
