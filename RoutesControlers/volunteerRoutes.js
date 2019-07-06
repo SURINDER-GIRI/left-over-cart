@@ -118,7 +118,7 @@ router.get('/:Id',function(req,res,next){
 	Location.find({_id:locationId}, function(err, user){
 	
 	Location.find({PostalCode:user[0].PostalCode}, function(err,loc) { 
-    	
+    	console.log(loc);
 	    loc.forEach((loc)=>{
 			Event.find({Location:loc},async function(err,eventss){
 	
