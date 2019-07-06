@@ -76,7 +76,7 @@ router.post('/login',(req,res,next)=>{
 
 
 			if(user == ""){
-				res.status(200).json({
+				res.status(500).json({
 					Username: "false",
 					password:"false"
 				});
@@ -84,9 +84,10 @@ router.post('/login',(req,res,next)=>{
 
 			else if(user[0].Username == req.body.Username && user[0].Password != req.body.Password){
 
-					res.status(200).json({
+					res.status(304).json({
 					Username: "true",
 					password:"false"
+
 				});
 
 			}
@@ -95,7 +96,9 @@ router.post('/login',(req,res,next)=>{
 
 				res.status(200).json({
 					Username: "true",
-					password:"true"
+					password:"true",
+					id:user[0]._id
+
 				});
 
 			}
@@ -108,7 +111,7 @@ router.post('/login',(req,res,next)=>{
 		
 		}
 })
-
+	
 });
 
 router.get('/:Id',function(req,res,next){
@@ -124,7 +127,7 @@ router.get('/:Id',function(req,res,next){
 				if(err){
 					res.status(404).json({
 						error:err
-					})
+					});
 				}
 
 				else{
