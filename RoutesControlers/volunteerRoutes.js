@@ -120,7 +120,7 @@ router.get('/:Id',function(req,res,next){
 	Location.find({_id:locationId}, function(err, user){
 	
 	Location.find({PostalCode:user[0].PostalCode}, function(err,loc) { 
-    	console.log("loc" + loc)
+    	console.log("loc" + loc._id)
 	    loc.forEach((loc)=>{
 			Event.find({Location:loc._id},async function(err,eventss){
 	
@@ -140,7 +140,7 @@ router.get('/:Id',function(req,res,next){
 					nearByEvents:events
 				});
 
-				console.log(" events " +events)
+				console.log(" events " + events)
 			}
 		});
 	});
