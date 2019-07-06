@@ -114,15 +114,13 @@ router.post('/login',(req,res,next)=>{
 
 router.get('/:Id',function(req,res,next){
 	const locationId = req.params.Id;
-
-	console.log("location Id" + locationId);
 	var events = []
 	Location.find({_id:locationId}, function(err, user){
 	
 	Location.find({PostalCode:user[0].PostalCode}, function(err,loc) { 
-    	console.log("loc" + loc._id)
+    	
 	    loc.forEach((loc)=>{
-			Event.find({Location:loc._id},async function(err,eventss){
+			Event.find({Location:loc},async function(err,eventss){
 	
 				if(err){
 					res.status(404).json({
@@ -140,7 +138,7 @@ router.get('/:Id',function(req,res,next){
 					nearByEvents:events
 				});
 
-				console.log(" events " + events)
+				
 			}
 		});
 	});
