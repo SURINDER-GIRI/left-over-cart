@@ -114,18 +114,14 @@ router.post('/login',(req,res,next)=>{
 
 router.get('/:Id',function(req,res,next){
 	const locationId = req.params.Id;
-	console.log("id from front end" + locationId);
 	var events = []
-
 	Location.find({_id:locationId}, function(err, user){
 	
 	Location.find({PostalCode:user[0].PostalCode}, function(err,loc) { 
-    
-	    loc.forEach((locs)=>{
-	    	console.log( "Database id"+ locs._id);
-			Event.find({Location:locs},async function(err,eventss){
-					
-
+    	
+	    loc.forEach((loc)=>{
+			Event.find({Location:loc},async function(err,eventss){
+	
 				if(err){
 					res.status(404).json({
 						error:err
@@ -134,10 +130,7 @@ router.get('/:Id',function(req,res,next){
 
 				else{
 			
-						
-				await eventss.forEach((event)=>{
-
-				
+					await eventss.forEach((event)=>{
 					events.push(event)
 				});
 
