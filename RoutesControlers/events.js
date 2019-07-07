@@ -82,9 +82,23 @@ router.get('/description/:Id',function(req,res,next){
 
 		else{
 
-			res.status(200).json({
-				event:event[0]
-			});
+				eve = event[0].Location;
+			Location.find({_id :eve},function(err,loc){
+				if(err){
+
+				res.status(404).json({
+				error:err
+			});			
+				}
+
+				else{
+
+				res.status(200).json({
+				event:event[0],
+				location:loc[0]
+			});	
+				}
+			})
 		}
 	})
 
