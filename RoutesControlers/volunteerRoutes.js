@@ -119,11 +119,12 @@ router.get('/:Id',function(req,res,next){
 	Location.find({_id:locationId}, function(err, user){
 	
 	Location.find({PostalCode:user[0].PostalCode}, function(err,loc) { 
-    	console.log(loc._id);
-	    loc.forEach((loc)=>{
-			Event.find({Location:loc},async function(err,eventss){
+    
+	    loc.forEach((locs)=>{
+	    	console.log(locs);
+			Event.find({Location:locs},async function(err,eventss){
 					
-					
+
 				if(err){
 					res.status(404).json({
 						error:err
