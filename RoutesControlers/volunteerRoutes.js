@@ -125,13 +125,14 @@ router.get('/:Id',function(req,res,next){
 
 	    loc.forEach((loc)=>{
 			Event.find({Location:loc},async function(err,eventss){
-	
+			
+			console.log("events whose locations matches" +eventss )
 				if(err){
 					res.status(404).json({
 						error:err
 					});
 				}
-
+  
 				else{
 			
 					await eventss.forEach((event)=>{
