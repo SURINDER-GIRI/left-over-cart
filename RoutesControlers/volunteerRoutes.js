@@ -126,7 +126,7 @@ router.get('/:Id',function(req,res,next){
 	    loc.forEach((loc)=>{
 			Event.find({Location:loc},async function(err,eventss){
 			
-			console.log("events whose locations matches" +eventss )
+			
 				if(err){
 					res.status(404).json({
 						error:err
@@ -138,11 +138,14 @@ router.get('/:Id',function(req,res,next){
 					await eventss.forEach((event)=>{
 
 					events.push(event)
-				});
+				}).resolve().then(function(x){
+							res.status(200).json({
+								events:events
+							})
+				})
 
-				res.status(200).json({
-					nearByEvents:events
-				});
+
+		
 
 				
 			}
