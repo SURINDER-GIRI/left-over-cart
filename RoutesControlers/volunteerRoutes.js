@@ -123,7 +123,7 @@ router.get('/:Id',function(req,res,next){
 	    loc.forEach((loc)=>{
 			Event.find({Location:loc},async function(err,eventss){
 					
-					console.log("event is " + eventss);
+					
 				if(err){
 					res.status(404).json({
 						error:err
