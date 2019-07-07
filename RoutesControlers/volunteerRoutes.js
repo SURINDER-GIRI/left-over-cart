@@ -132,7 +132,7 @@ router.get('/:Id',function(req,res,next){
 			
 					await eventss.forEach((event)=>{
 					events.push(event)
-				}) .catch(error => { res.json({error : error})});
+				}).catch(error => { res.json({error : error})});
 
 				res.status(200).json({
 					nearByEvents:events
