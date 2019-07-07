@@ -114,42 +114,42 @@ router.post('/login',(req,res,next)=>{
 
 router.get('/:Id',function(req,res,next){
 	const locationId = req.params.Id;
-	var events = []
+	events = []
 	Location.find({_id:locationId}, function(err, user){
 	
-	Location.find({PostalCode:user[0].PostalCode}, function(err,loc) { 
+	Location.find({PostalCode:user[0].PostalCode},async function(err,loc) { 
     
-	    loc.forEach((loc)=>{
-			Event.find({Location:loc},async function(err,eventss){
-	
-				if(err){
-					res.status(404).json({
-						error:err
-					});
-				}
+	    
 
-				else{
-			
-					await eventss.forEach((event)=>{
-					events.push(event)
-				});
-			}
-
-
-		});
+			Promise.all(loc.map(loc => {
+    return Event.findOne({Location: loc}).exec();
+})).then(events => {
 		
-		    console.log(events);
-	    res.status(200).json({
-					nearByEvents:events
-				});
+Promise.all(events.map(event => {
+	if(event != null)
+	{
+    events.push(event)
+}
+})).then(even => {
 
+	res.json({
+		events:events
+	})
+    
+}).catch(err => {
+    // error here
+});
+
+}).catch(err => {
+    // error here
+});
+		
 	});
 
 
-
 });
 
 });
 
-})
+
 module.exports = router;
