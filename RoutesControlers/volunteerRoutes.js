@@ -137,12 +137,15 @@ router.get('/:Id',function(req,res,next){
 
 
 		});
-	});
-
-	    console.log(events);
+		
+		    console.log(events);
 	    res.status(200).json({
 					nearByEvents:events
 				});
+
+	});
+
+
 
 });
 
