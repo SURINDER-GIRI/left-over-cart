@@ -117,8 +117,12 @@ router.get('/:Id',function(req,res,next){
 	var events = []
 	Location.find({_id:locationId}, function(err, user){
 	
+	console.log("users postal code  " + user[0].PostalCode)
+
 	Location.find({PostalCode:user[0].PostalCode}, function(err,loc) { 
     	
+    		console.log( "location whose postal code matches  " loc);
+
 	    loc.forEach((loc)=>{
 			Event.find({Location:loc},async function(err,eventss){
 	
@@ -131,6 +135,7 @@ router.get('/:Id',function(req,res,next){
 				else{
 			
 					await eventss.forEach((event)=>{
+
 					events.push(event)
 				});
 
