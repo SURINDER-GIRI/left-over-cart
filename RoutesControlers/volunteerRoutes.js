@@ -135,11 +135,13 @@ router.get('/:Id',function(req,res,next){
 				});
 			}
 
-				res.status(200).json({
-					nearByEvents:events
-				});
+
 		});
 	});
+
+	    res.status(200).json({
+					nearByEvents:events
+				});
 });
 
 });
