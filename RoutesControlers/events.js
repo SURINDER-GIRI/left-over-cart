@@ -68,4 +68,27 @@ router.post('/pastEvents',async function(req,res,next){
   });
 }); 
 
+
+router.get('/description/:Id',function(req,res,next){
+
+	const eventId = req.params.Id;
+	Events.find({_id:eventId},function(err, event){
+
+		if(err){
+			res.status(404).json({
+				error:err
+			});
+		}
+
+		else{
+
+			res.status(200).json({
+				event:event[0]
+			});
+		}
+	})
+
+});
+
+
 module.exports = router;
