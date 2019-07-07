@@ -114,6 +114,7 @@ router.post('/login',(req,res,next)=>{
 
 router.get('/:Id',function(req,res,next){
 	const locationId = req.params.Id;
+	console.log("id from front end" + locationId);
 	var events = []
 
 	Location.find({_id:locationId}, function(err, user){
@@ -121,7 +122,7 @@ router.get('/:Id',function(req,res,next){
 	Location.find({PostalCode:user[0].PostalCode}, function(err,loc) { 
     
 	    loc.forEach((locs)=>{
-	    	console.log(locs._id);
+	    	console.log( "Database id"+ locs._id);
 			Event.find({Location:locs},async function(err,eventss){
 					
 
