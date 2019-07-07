@@ -130,7 +130,7 @@ router.get('/:Id',function(req,res,next){
 
 				else{
 			
-					await eventss.forEach((event)=>{
+					await events.forEach((event)=>{
 
 						console.log("event is " + event)
 					events.push(event)
