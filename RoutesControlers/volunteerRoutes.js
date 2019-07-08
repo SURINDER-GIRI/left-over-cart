@@ -132,16 +132,25 @@ Promise.all(events.map(event => {
 }
 })).then(even => {
 
-	res.json({
+	res.status(200).json({
 		events:events
 	})
     
 }).catch(err => {
-    // error here
+    
+    res.status(404).json({
+		error:err
+	});
+
 });
 
 }).catch(err => {
-    // error here
+		
+		res.status(404).json({
+		error:err
+	});
+
+});    
 });
 		
 	});
